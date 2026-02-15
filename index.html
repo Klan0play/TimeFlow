@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TimeFlow | Система управления временем</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⏱️</text></svg>">
+</head>
+<body>
+    <div class="cyber-grid"></div>
+    <div class="cyber-lines"></div>
+    <div class="particles-container" id="particles"></div>
+    
+    <header class="cyber-header">
+        <div class="header-grid">
+            <div class="brand-section">
+                <div class="main-logo">
+                    <div class="logo-nexus">
+                        <div class="logo-core">
+                            <img src="C:\Users\user\OneDrive\Desktop\Проекты\Итоговый проект JS\Avatars\Логотип Команды.jpg" 
+                                 alt="TimeFlow" class="logo-img">
+                        </div>
+                        <div class="logo-ring"></div>
+                    </div>
+                    <div class="brand-text">
+                        <h1 class="brand-title">Time<span class="text-gradient">Flow</span></h1>
+                        <div class="brand-subtitle">
+                            <span class="team-badge">KLAN PLAY</span>
+                            <span class="version-badge">v2.0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <nav class="main-nav">
+                <ul class="nav-links">
+                    <li><a href="#home" class="nav-link active">
+                        <i class="fas fa-home"></i>
+                        <span>Главная</span>
+                    </a></li>
+                    <li><a href="#planner" class="nav-link">
+                        <i class="fas fa-tasks"></i>
+                        <span>Планировщик</span>
+                    </a></li>
+                    <li><a href="#calculator" class="nav-link">
+                        <i class="fas fa-chart-pie"></i>
+                        <span>Анализ</span>
+                    </a></li>
+                    <li><a href="#pomodoro" class="nav-link">
+                        <i class="fas fa-hourglass-half"></i>
+                        <span>Фокус</span>
+                    </a></li>
+                    <li><a href="#recommendations" class="nav-link">
+                        <i class="fas fa-graduation-cap"></i>
+                        <span>Обучение</span>
+                    </a></li>
+                </ul>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <div class="menu-icon">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </button>
+            </nav>
+
+            <div class="live-stats">
+                <div class="stat-card">
+                    <div class="stat-value">65%</div>
+                    <div class="stat-label">Загрузка</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-value">88%</div>
+                    <div class="stat-label">Энергия</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="scan-line"></div>
+    </header>
+
+    <main class="main-content">
+        <section id="home" class="hero-section">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <span class="badge-text">KLAN PLAY SYSTEM</span>
+                    </div>
+                    
+                    <h2 class="hero-title">
+                        <span class="hero-line gradient-text">ВРЕМЯ —</span>
+                        <span class="hero-line gradient-text">ВАШ РЕСУРС</span>
+                    </h2>
+                    
+                    <p class="hero-description">
+                        Система управления временем от команды <span class="highlight">KLAN PLAY</span>.
+                    </p>
+                    
+                    <div class="hero-stats">
+                        <div class="hero-stat">
+                            <div class="stat-number">24/7</div>
+                            <div class="stat-label">Мониторинг</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="stat-number">AI</div>
+                            <div class="stat-label">Аналитика</div>
+                        </div>
+                        <div class="hero-stat">
+                            <div class="stat-number">PRO</div>
+                            <div class="stat-label">Система</div>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-actions">
+                        <button class="hero-btn primary" id="quickStart">
+                            <i class="fas fa-rocket"></i>
+                            <span>Старт</span>
+                        </button>
+                        <button class="hero-btn secondary" id="demoMode">
+                            <i class="fas fa-play-circle"></i>
+                            <span>Демо</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="hero-visual">
+                    <div class="time-circuit">
+                        <div class="circuit-node"></div>
+                        <div class="circuit-node"></div>
+                        <div class="circuit-node"></div>
+                        <div class="circuit-line"></div>
+                        <div class="circuit-line"></div>
+                        <div class="circuit-line"></div>
+                    </div>
+                    
+                    <div class="live-time-display" id="timeDisplay">
+                        <div class="time-digits">
+                            <span class="digit">14</span>
+                            <span class="digit-separator">:</span>
+                            <span class="digit">30</span>
+                            <span class="digit-separator">:</span>
+                            <span class="digit">45</span>
+                        </div>
+                        <div class="time-date">
+                            Понедельник, 12 Марта 2024
+                        </div>
+                        <div class="time-zone">
+                            <i class="fas fa-satellite"></i>
+                            <span>Moscow UTC+3</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <div class="content-grid">
+            <section id="planner" class="section cyber-card">
+                <div class="section-header">
+                    <div class="header-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h2>Планировщик</h2>
+                </div>
+                
+                <div class="task-interface">
+                    <form class="task-form" id="taskForm">
+                        <div class="form-row">
+                            <div class="input-group">
+                                <input type="text" id="taskName" class="cyber-input" placeholder="Название задачи" required>
+                            </div>
+                            
+                            <div class="input-group">
+                                <div class="category-select">
+                                    <select id="taskCategory" class="cyber-select">
+                                        <option value="work">Работа</option>
+                                        <option value="study">Учеба</option>
+                                        <option value="sport">Спорт</option>
+                                        <option value="personal">Личное</option>
+                                    </select>
+                                    <div class="select-arrow">
+                                        <i class="fas fa-chevron-down"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="input-group">
+                                <div class="priority-buttons">
+                                    <button type="button" class="priority-btn low" data-priority="low">
+                                        Низкий
+                                    </button>
+                                    <button type="button" class="priority-btn medium active" data-priority="medium">
+                                        Средний
+                                    </button>
+                                    <button type="button" class="priority-btn high" data-priority="high">
+                                        Высокий
+                                    </button>
+                                </div>
+                                <input type="hidden" id="taskPriority" value="medium">
+                            </div>
+                            
+                            <div class="input-group">
+                                <div class="time-input">
+                                    <input type="number" id="taskTime" class="cyber-input" min="1" max="480" value="30">
+                                    <div class="time-presets">
+                                        <button type="button" class="time-preset" data-minutes="15">15</button>
+                                        <button type="button" class="time-preset" data-minutes="30">30</button>
+                                        <button type="button" class="time-preset" data-minutes="60">60</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="submit" class="form-btn primary">
+                                <i class="fas fa-plus-circle"></i>
+                                <span>Создать</span>
+                            </button>
+                            <button type="button" class="form-btn secondary" id="aiSuggest">
+                                <i class="fas fa-robot"></i>
+                                <span>AI</span>
+                            </button>
+                            <button type="button" class="form-btn ghost" id="clearForm">
+                                <i class="fas fa-eraser"></i>
+                                <span>Очистить</span>
+                            </button>
+                        </div>
+                    </form>
+                    
+                    <div class="tasks-container">
+                        <div class="tasks-header">
+                            <h3>Задачи</h3>
+                            <div class="tasks-filter">
+                                <button class="filter-btn active" data-filter="all">Все</button>
+                                <button class="filter-btn" data-filter="active">Активные</button>
+                                <button class="filter-btn" data-filter="completed">Завершенные</button>
+                            </div>
+                        </div>
+                        
+                        <div class="tasks-list" id="tasksList">
+                            <div class="empty-state">
+                                <div class="empty-icon">
+                                    <i class="fas fa-list-check"></i>
+                                </div>
+                                <h4>Нет задач</h4>
+                                <p>Создайте первую задачу</p>
+                            </div>
+                        </div>
+                        
+                        <div class="tasks-summary">
+                            <div class="summary-item">
+                                <span class="summary-label">Всего:</span>
+                                <span class="summary-value" id="totalTasks">0</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label">Активные:</span>
+                                <span class="summary-value" id="activeTasks">0</span>
+                            </div>
+                            <div class="summary-item">
+                                <span class="summary-label">Завершено:</span>
+                                <span class="summary-value" id="completedTasks">0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="calculator" class="section cyber-card">
+                <div class="section-header">
+                    <div class="header-icon">
+                        <i class="fas fa-chart-network"></i>
+                    </div>
+                    <h2>Анализ</h2>
+                </div>
+                
+                <div class="analysis-grid">
+                    <div class="input-panel">
+                        <div class="activity-inputs">
+                            <div class="activity-row">
+                                <div class="activity-icon">
+                                    <i class="fas fa-briefcase"></i>
+                                </div>
+                                <div class="activity-info">
+                                    <label>Работа</label>
+                                </div>
+                                <div class="activity-input">
+                                    <input type="number" id="workHours" class="cyber-input" min="0" max="24" value="8">
+                                    <span class="input-suffix">ч</span>
+                                </div>
+                            </div>
+                            
+                            <div class="activity-row">
+                                <div class="activity-icon">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                                <div class="activity-info">
+                                    <label>Учеба</label>
+                                </div>
+                                <div class="activity-input">
+                                    <input type="number" id="studyHours" class="cyber-input" min="0" max="24" value="3">
+                                    <span class="input-suffix">ч</span>
+                                </div>
+                            </div>
+                            
+                            <div class="activity-row">
+                                <div class="activity-icon">
+                                    <i class="fas fa-dumbbell"></i>
+                                </div>
+                                <div class="activity-info">
+                                    <label>Спорт</label>
+                                </div>
+                                <div class="activity-input">
+                                    <input type="number" id="sportHours" class="cyber-input" min="0" max="24" value="1">
+                                    <span class="input-suffix">ч</span>
+                                </div>
+                            </div>
+                            
+                            <div class="activity-row">
+                                <div class="activity-icon">
+                                    <i class="fas fa-couch"></i>
+                                </div>
+                                <div class="activity-info">
+                                    <label>Отдых</label>
+                                </div>
+                                <div class="activity-input">
+                                    <input type="number" id="restHours" class="cyber-input" min="0" max="24" value="4">
+                                    <span class="input-suffix">ч</span>
+                                </div>
+                            </div>
+                            
+                            <div class="activity-row">
+                                <div class="activity-icon">
+                                    <i class="fas fa-gamepad"></i>
+                                </div>
+                                <div class="activity-info">
+                                    <label>Развлечения</label>
+                                </div>
+                                <div class="activity-input">
+                                    <input type="number" id="entertainmentHours" class="cyber-input" min="0" max="24" value="3">
+                                    <span class="input-suffix">ч</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="total-hours">
+                            <span>Всего часов:</span>
+                            <span id="totalHoursDisplay">19ч</span>
+                        </div>
+                    </div>
+                    
+                    <div class="results-panel">
+                        <div class="results-header">
+                            <h3>Результаты</h3>
+                            <button class="analyze-btn" id="calculateBtn">
+                                <i class="fas fa-cogs"></i>
+                                <span>Анализировать</span>
+                            </button>
+                        </div>
+                        
+                        <div class="productivity-score">
+                            <div class="score-card">
+                                <div class="score-value" id="productivityPercent">0%</div>
+                                <div class="score-label">Продуктивность</div>
+                            </div>
+                        </div>
+                        
+                        <div class="chart-container">
+                            <canvas id="productivityChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="pomodoro" class="section cyber-card">
+                <div class="section-header">
+                    <div class="header-icon">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <h2>Фокус</h2>
+                </div>
+                
+                <div class="focus-interface">
+                    <div class="timer-display-container">
+                        <div class="timer-mode-display" id="timerMode">
+                            <span class="mode-text">ФОКУС</span>
+                        </div>
+                        
+                        <div class="timer-main">
+                            <div class="timer-digits" id="timerDisplay">25:00</div>
+                            <div class="timer-progress-ring">
+                                <svg width="300" height="300" viewBox="0 0 300 300">
+                                    <circle cx="150" cy="150" r="140" stroke="rgba(0, 240, 255, 0.1)" stroke-width="8" fill="transparent"/>
+                                    <circle id="timerCircle" cx="150" cy="150" r="140" stroke="url(#gradient)" stroke-width="8" fill="transparent" stroke-linecap="round" transform="rotate(-90 150 150)"/>
+                                    <defs>
+                                        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stop-color="#00f0ff"/>
+                                            <stop offset="100%" stop-color="#0080ff"/>
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                            </div>
+                        </div>
+                        
+                        <div class="timer-session-info">
+                            <div class="session-counter">
+                                <i class="fas fa-redo"></i>
+                                <span>Сессия: <strong id="sessionCount">1</strong></span>
+                            </div>
+                            <div class="session-total">
+                                <i class="fas fa-clock"></i>
+                                <span>Всего: <strong id="totalFocusTime">0ч</strong></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="timer-controls">
+                        <button class="timer-btn start" id="startBtn">
+                            <i class="fas fa-play"></i>
+                            <span>Старт</span>
+                        </button>
+                        <button class="timer-btn pause" id="pauseBtn">
+                            <i class="fas fa-pause"></i>
+                            <span>Пауза</span>
+                        </button>
+                        <button class="timer-btn reset" id="resetBtn">
+                            <i class="fas fa-stop"></i>
+                            <span>Стоп</span>
+                        </button>
+                        <button class="timer-btn skip" id="skipBtn">
+                            <i class="fas fa-forward"></i>
+                            <span>Пропустить</span>
+                        </button>
+                    </div>
+                    
+                    <div class="timer-settings">
+                        <div class="setting-group">
+                            <label for="workDuration">
+                                <i class="fas fa-bolt"></i>
+                                Фокус
+                            </label>
+                            <div class="time-selector">
+                                <input type="number" id="workDuration" min="5" max="60" value="25">
+                                <span class="time-unit">мин</span>
+                            </div>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label for="breakDuration">
+                                <i class="fas fa-coffee"></i>
+                                Отдых
+                            </label>
+                            <div class="time-selector">
+                                <input type="number" id="breakDuration" min="1" max="30" value="5">
+                                <span class="time-unit">мин</span>
+                            </div>
+                        </div>
+                        
+                        <div class="setting-group">
+                            <label for="longBreakDuration">
+                                <i class="fas fa-bed"></i>
+                                Длинный отдых
+                            </label>
+                            <div class="time-selector">
+                                <input type="number" id="longBreakDuration" min="10" max="60" value="15">
+                                <span class="time-unit">мин</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="focus-stats">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-fire"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-value" id="focusSessions">0</div>
+                                <div class="stat-label">Сессий</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-value" id="focusStreak">0</div>
+                                <div class="stat-label">Дней подряд</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-trophy"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-value" id="focusScore">0</div>
+                                <div class="stat-label">Рейтинг</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="recommendations" class="section cyber-card">
+                <div class="section-header">
+                    <div class="header-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h2>Обучение</h2>
+                </div>
+                
+                <div class="knowledge-grid">
+                    <div class="methodology-cards">
+                        <div class="method-card">
+                            <div class="method-icon">
+                                <i class="fas fa-hourglass-half"></i>
+                            </div>
+                            <h3>Pomodoro</h3>
+                            <p>25-минутные интервалы с перерывами для концентрации</p>
+                            <div class="method-tags">
+                                <span class="tag">Фокус</span>
+                                <span class="tag">Таймер</span>
+                            </div>
+                            <button class="method-btn">
+                                <i class="fas fa-book-open"></i>
+                                <span>Изучить</span>
+                            </button>
+                        </div>
+                        
+                        <div class="method-card">
+                            <div class="method-icon">
+                                <i class="fas fa-th-large"></i>
+                            </div>
+                            <h3>Матрица Эйзенхауэра</h3>
+                            <p>Расстановка приоритетов по важности и срочности</p>
+                            <div class="method-tags">
+                                <span class="tag">Приоритеты</span>
+                                <span class="tag">Планирование</span>
+                            </div>
+                            <button class="method-btn">
+                                <i class="fas fa-book-open"></i>
+                                <span>Изучить</span>
+                            </button>
+                        </div>
+                        
+                        <div class="method-card">
+                            <div class="method-icon">
+                                <i class="fas fa-chart-pie"></i>
+                            </div>
+                            <h3>Принцип Парето</h3>
+                            <p>80% результата достигается благодаря 20% усилий</p>
+                            <div class="method-tags">
+                                <span class="tag">Эффективность</span>
+                                <span class="tag">Анализ</span>
+                            </div>
+                            <button class="method-btn">
+                                <i class="fas fa-book-open"></i>
+                                <span>Изучить</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="resources-panel">
+                        <div class="resources-tabs">
+                            <button class="tab-btn active" data-tab="books">
+                                <i class="fas fa-book"></i>
+                                <span>Книги</span>
+                            </button>
+                            <button class="tab-btn" data-tab="videos">
+                                <i class="fas fa-video"></i>
+                                <span>Видео</span>
+                            </button>
+                        </div>
+                        
+                        <div class="resources-content">
+                            <div class="tab-content active" id="books">
+                                <div class="resource-item">
+                                    <div class="resource-icon">
+                                        <i class="fas fa-book"></i>
+                                    </div>
+                                    <div class="resource-info">
+                                        <h4>Getting Things Done</h4>
+                                        <p>Методика управления задачами</p>
+                                    </div>
+                                    <button class="resource-btn">
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </button>
+                                </div>
+                                
+                                <div class="resource-item">
+                                    <div class="resource-icon">
+                                        <i class="fas fa-book"></i>
+                                    </div>
+                                    <div class="resource-info">
+                                        <h4>7 навыков</h4>
+                                        <p>Принципы личной эффективности</p>
+                                    </div>
+                                    <button class="resource-btn">
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contacts" class="section cyber-card">
+                <div class="section-header">
+                    <div class="header-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h2>Команда</h2>
+                </div>
+                
+                <div class="team-section">
+                    <div class="team-info">
+                        <div class="team-card featured">
+                            <div class="member-avatar">
+                            <img src="Avatars/logo.jpg" 
+                                alt="Логотип KLAN PLAY" 
+                                onerror="this.style.display='none'">
+                                 <div class="avatar-fallback">
+                                    <i class="fas fa-gamepad"></i>
+                            </div>
+                            <div class="member-details">
+                                <h3>KLAN PLAY</h3>
+                                <p class="member-bio">
+                                    Разработчик системы TimeFlow.
+                                </p>
+                                <div class="member-skills">
+                                    <span class="skill-tag">JavaScript</span>
+                                    <span class="skill-tag">React</span>
+                                    <span class="skill-tag">UI/UX</span>
+                                </div>
+                            </div>
+                            <div class="member-badge">
+                                <div class="badge-icon">
+                                    <i class="fas fa-bolt"></i>
+                                </div>
+                                <span class="badge-text">Разработчик</span>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-form">
+                            <h3>Связаться</h3>
+                            <form id="contactForm">
+                                <div class="form-group">
+                                    <input type="text" id="contactName" class="cyber-input" placeholder="Ваше имя" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <input type="email" id="contactEmail" class="cyber-input" placeholder="Email" required>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <textarea id="contactMessage" class="cyber-textarea" placeholder="Сообщение..." required></textarea>
+                                </div>
+                                
+                                <div class="form-actions">
+                                    <button type="submit" class="form-btn primary">
+                                        <i class="fas fa-paper-plane"></i>
+                                        <span>Отправить</span>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <div class="team-members">
+                        <div class="member-card">
+                            <div class="member-avatar small">
+                                <div class="avatar-fallback">AI</div>
+                            </div>
+                            <div class="member-info">
+                                <h4>AI Ассистент</h4>
+                                <div class="member-role">Искусственный интеллект</div>
+                                <p>Анализирует продуктивность</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="cyber-footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <div class="logo-symbol-small">
+                        <i class="fas fa-infinity"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h3>TimeFlow</h3>
+                        <p>KLAN PLAY System</p>
+                    </div>
+                </div>
+                
+                <div class="footer-creds">
+                    <div class="cred-badge">
+                        <span class="cred-title">Разработано</span>
+                        <span class="cred-name">KLAN PLAY</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-links">
+                <div class="link-group">
+                    <h4>Система</h4>
+                    <a href="#home">Главная</a>
+                    <a href="#planner">Планировщик</a>
+                    <a href="#calculator">Анализ</a>
+                    <a href="#pomodoro">Фокус</a>
+                </div>
+                
+                <div class="link-group">
+                    <h4>Ресурсы</h4>
+                    <a href="#recommendations">Обучение</a>
+                    <a href="#contacts">Команда</a>
+                </div>
+            </div>
+            
+            <div class="footer-social">
+                <div class="social-links">
+                    <a href="#" class="social-link" title="GitHub">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://t.me/klan_play" class="social-link" title="Telegram">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                    <a href="https://discord.gg/XkndRdywF8" class="social-link" title="Discord">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="copyright">
+                <p>© 2025 TimeFlow System. KLAN PLAY.</p>
+            </div>
+            
+            <div class="tech-stack">
+                <span class="tech-item">
+                    <i class="fas fa-code"></i>
+                    <span>HTML5</span>
+                </span>
+                <span class="tech-item">
+                    <i class="fas fa-palette"></i>
+                    <span>CSS3</span>
+                </span>
+                <span class="tech-item">
+                    <i class="fas fa-cogs"></i>
+                    <span>JavaScript</span>
+                </span>
+                <span class="tech-item">
+                    <i class="fas fa-brain"></i>
+                    <span>AI</span>
+                </span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
